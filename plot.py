@@ -1,0 +1,42 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("quadtree_benchmark.csv")
+
+plt.figure(figsize=(10, 6)) 
+plt.plot(df["size"], df["insert_ns"], label="Total Insertion Time", color='blue')
+plt.title("Quadtree Insertion Time (Tree Build Cost) - Random Data")
+plt.xlabel("Number of Points (N)")
+plt.ylabel("Total Time (nanoseconds)")
+plt.legend()
+plt.grid(True)
+plt.tight_layout() 
+plt.savefig("quadtree_insertion_benchmark.png") 
+plt.close() 
+
+plt.figure(figsize=(10, 6))
+plt.plot(df["size"], df["range_ns"], label="Range Query Time", color='red')
+plt.title("Quadtree Range Query Time (Average per Query) - Random Data")
+plt.xlabel("Number of Points (N) / Tree Size")
+plt.ylabel("Average Time (nanoseconds)")
+plt.legend()
+plt.grid(True)
+plt.tight_layout() 
+plt.savefig("quadtree_range_query_benchmark.png")
+plt.close() 
+
+plt.figure(figsize=(10, 6)) 
+plt.plot(df["size"], df["search_ns"], label="Point Search Time", color='green')
+plt.title("Quadtree Point Search Time (Average per Search) - Random Data")
+plt.xlabel("Number of Points (N) / Tree Size")
+plt.ylabel("Average Time (nanoseconds)")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.savefig("quadtree_point_search_benchmark.png") 
+plt.close() 
+
+print("Three benchmark graphs saved as PNG files:")
+print("- quadtree_insertion_benchmark.png")
+print("- quadtree_range_query_benchmark.png")
+print("- quadtree_point_search_benchmark.png")
